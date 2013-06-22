@@ -31,3 +31,11 @@
 .icon-file-txt {
 	background-image: url(../images/icons/file_extension_txt.png) !important;
 }
+
+.icon-search {
+	background-image: url(../images/icons/table_tab_search.png) !important;
+}
+
+.icon-detail {
+	background-image: url(../images/icons/application_view_detail.png) !important;
+}

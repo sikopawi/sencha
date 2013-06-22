@@ -2,7 +2,7 @@ Ext.define(MyIndo.getNameSpace('controller.Menu'), {
 	extend: 'MyIndo.controller.Menu',
 	
 	requires: [
-	MyIndo.getNameSpace('view.Master.CustomerView'),
+	MyIndo.getNameSpace('view.Master.Customer.CustomerView'),
 	MyIndo.getNameSpace('view.Master.Cabang.CabangView'),
 	MyIndo.getNameSpace('view.Master.PaymentPoint.PaymentPointView'),
 	MyIndo.getNameSpace('view.Master.KreditCategory.KreditCategoryView'),
