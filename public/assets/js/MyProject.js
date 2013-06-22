@@ -14,7 +14,10 @@ Ext.application({
 	'Master.PaymentPoint',
 	'Master.KreditCategory',
 	'Master.DebiturCategory',
-	'Master.Customer'
+	'Master.Customer',
+	'Master.UnitKerja',
+	'Master.MarketingOfficer',
+	'Master.Kolektabilitas'
 	],
 
 	autoCreateViewport: true,
