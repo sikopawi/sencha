@@ -5,7 +5,7 @@ Ext.define(MyIndo.getNameSpace('store.PaymentPoints'), {
 		type: 'ajax',
 		api: {
 			read: MyIndo.siteUrl('paymentpoint/request/read'),
-			destroy: MyIndo.siteUrl('paymentpint/request/destroy')
+			destroy: MyIndo.siteUrl('paymentpoint/request/destroy')
 		},
 		actionMethods: MyIndo.config.defaultActionMethods,
 		reader: MyIndo.config.defaultReader

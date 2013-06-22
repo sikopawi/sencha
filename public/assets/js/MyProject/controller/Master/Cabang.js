@@ -30,8 +30,6 @@ Ext.define(MyIndo.getNameSpace('controller.Master.Cabang'), {
 			case 'delete':
 				this.delete(record);
 				break;
-			default:
-				
 		}
 	},
 
@@ -70,7 +68,11 @@ Ext.define(MyIndo.getNameSpace('controller.Master.Cabang'), {
 			Ext.Msg.confirm('Konfirmasi Hapus Cabang', 'Anda yakin ingin menghapus data ini ?', function(btn) {
 				if(btn == 'yes') {
 					store.remove(store.findRecord('CABANG_ID', selected[0].data.CABANG_ID));
-					store.sync();
+					store.sync({
+						callback: function() {
+							store.load(store.currentPage);
+						}
+					});
 				}
 			});
 		} else {
@@ -95,8 +97,6 @@ Ext.define(MyIndo.getNameSpace('controller.Master.Cabang'), {
 			case 'add-cabang-cancel':
 				record.up().up().close();
 				break;
-			default:
-				console.log(record);
 		}
 	},
 
