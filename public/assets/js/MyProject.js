@@ -11,7 +11,8 @@ Ext.application({
 	controllers: [
 	'Menu',
 	'Master.Cabang',
-	'Master.PaymentPoint'
+	'Master.PaymentPoint',
+	'Master.KreditCategory'
 	],
 
 	autoCreateViewport: true,
