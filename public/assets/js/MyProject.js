@@ -12,7 +12,8 @@ Ext.application({
 	'Menu',
 	'Master.Cabang',
 	'Master.PaymentPoint',
-	'Master.KreditCategory'
+	'Master.KreditCategory',
+	'Master.DebiturCategory'
 	],
 
 	autoCreateViewport: true,

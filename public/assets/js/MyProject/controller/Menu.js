@@ -6,6 +6,7 @@ Ext.define(MyIndo.getNameSpace('controller.Menu'), {
 	MyIndo.getNameSpace('view.Master.Cabang.CabangView'),
 	MyIndo.getNameSpace('view.Master.PaymentPoint.PaymentPointView'),
 	MyIndo.getNameSpace('view.Master.KreditCategory.KreditCategoryView'),
+	MyIndo.getNameSpace('view.Master.DebiturCategory.DebiturCategoryView'),
 
 	MyIndo.getNameSpace('controller.Master.Cabang')
 	],
@@ -14,7 +15,8 @@ Ext.define(MyIndo.getNameSpace('controller.Menu'), {
 	'Menus',
 	'Cabangs',
 	'PaymentPoints',
-	'KreditCategorys'
+	'KreditCategorys',
+	'DebiturCategorys'
 	],
 	
 	onCabangMenuClicked: function(menuTitle, menuId, mainContent) {
@@ -66,6 +68,21 @@ Ext.define(MyIndo.getNameSpace('controller.Menu'), {
 			store.load();
 			mainContent.add({
 				xtype: 'kreditcategoryview',
+				title: menuTitle,
+				id: menuId,
+				closable: true,
+				store: store
+			});
+		}
+		mainContent.setActiveTab(menuId);
+	},
+
+	onDebiturCategoryClicked: function(menuTitle, menuId, mainContent) {
+		if(!mainContent.items.get(menuId)) {
+			var store = Ext.create(MyIndo.getNameSpace('store.DebiturCategorys'));
+			store.load();
+			mainContent.add({
+				xtype: 'debiturcategoryview',
 				title: menuTitle,
 				id: menuId,
 				closable: true,
