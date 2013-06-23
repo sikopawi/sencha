@@ -4,10 +4,18 @@ class Permohonankredit_RequestController extends MyIndo_Controller_Action
 {
 	public function readAction()
 	{
-		$model = new permohonankredit_Model_Permohonankredit();
+		$model = new permohonankredit_Model_PermohonanKreditView();
 		try {
+			$where = array();
+			if(isset($this->_posts['STATUS'])) {
+				if($this->_posts['STATUS'] == 'Open') {
+					$where[] = $model->getAdapter()->quoteInto('STATUS = ?', 'Open');
+				} else if($this->_posts['STATUS'] == 'Disetujui') {
+					$where[] = $model->getAdapter()->quoteInto('STATUS = ?', 'Disetujui');
+				}
+			}
 			$this->_data = array(
-				'items' => $model->getList($this->_limit, $this->_start, $this->_order),
+				'items' => $model->getList($this->_limit, $this->_start, $this->_order, $where),
 				'totalCount' => $model->count()
 				);
 		} catch(Exception $e) {
@@ -115,5 +123,41 @@ class Permohonankredit_RequestController extends MyIndo_Controller_Action
 		}
 	}
 	
-	
+	public function statusAction()
+	{
+		try {
+			if(isset($this->_posts['STATUS'])) {
+				$model = new permohonankredit_Model_Permohonankredit();
+				$debiturModel = new debitur_Model_Debitur();
+				$model->update(array('STATUS'=>$this->_posts['STATUS']), $model->getAdapter()->quoteInto('PERMOHONAN_KREDIT_ID = ?', $this->_posts['PERMOHONAN_KREDIT_ID']));
+				if($this->_posts['STATUS'] == 'Berjalan') {
+					$q = $model->select()->where('PERMOHONAN_KREDIT_ID = ?', $this->_posts['PERMOHONAN_KREDIT_ID']);
+					$res = $q->query()->fetch();
+					$cust_id = $res['CUSTOMERS_ID'];
+					$q = $debiturModel->select()->order('DEBITUR_ID DESC');
+					if($q->query()->rowCount() == 0) {
+						$no_rek = '0000000001';
+					} else {
+						$res = $q->query()->fetch();
+						$last_no_rek = (int)$res['DEBITUR_NO_REK'];
+						$last_no_rek++;
+						$no_rek = '';
+						for($i=0;$i<(10 - strlen($last_no_rek));$i++) {
+							$no_rek .= '0';
+						}
+						$no_rek .= $last_no_rek;
+					}
+
+					$debiturModel->insert(array(
+						'CUSTOMERS_ID' => $cust_id,
+						'PERMOHONAN_KREDIT_ID' => $this->_posts['PERMOHONAN_KREDIT_ID'],
+						'DEBITUR_NO_REK' => $no_rek,
+						'CREATED_DATE' => $this->_date
+						));
+				}
+			}
+		} catch(Exception $e) {
+			$this->exception($e);
+		}
+	}
 }

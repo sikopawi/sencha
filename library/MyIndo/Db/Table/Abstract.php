@@ -2,7 +2,7 @@
 
 class MyIndo_Db_Table_Abstract extends Zend_Db_Table_Abstract
 {
-	public function getList($limit = null, $offset = null, $order = null)
+	public function getList($limit = null, $offset = null, $order = null, $where = array())
 	{
 		try {
 
@@ -14,6 +14,10 @@ class MyIndo_Db_Table_Abstract extends Zend_Db_Table_Abstract
 
 			if(!is_null($order)) {
 				$query->order($order);
+			}
+
+			foreach($where as $index => $w) {
+				$query->where($w);
 			}
 
 			return $query->query()->fetchAll();

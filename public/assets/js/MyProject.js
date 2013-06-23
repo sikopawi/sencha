@@ -20,6 +20,9 @@ Ext.application({
 	'Master.Kolektabilitas',
 	'Master.PermohonanKredit',
 
+	'Kredit.AnalisaKredit',
+	'Kredit.PencairanKredit',
+	
 	'Simpanan.Rekening'
 	],
 

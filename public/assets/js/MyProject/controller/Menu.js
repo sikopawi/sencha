@@ -12,6 +12,12 @@ Ext.define(MyIndo.getNameSpace('controller.Menu'), {
 	MyIndo.getNameSpace('view.Master.Kolektabilitas.KolektabilitasView'),
 	MyIndo.getNameSpace('view.Master.PermohonanKredit.PermohonanKreditView'),
 
+	MyIndo.getNameSpace('view.Kredit.AnalisaKredit.View'),
+	MyIndo.getNameSpace('view.Kredit.PencairanKredit.View'),
+
+	MyIndo.getNameSpace('view.Administrasi.Debitur.View'),
+	MyIndo.getNameSpace('view.Administrasi.TagihanReguler.View'),
+
 	MyIndo.getNameSpace('view.Simpanan.Rekening.View'),
 	MyIndo.getNameSpace('controller.Master.Cabang')
 	],
@@ -27,7 +33,9 @@ Ext.define(MyIndo.getNameSpace('controller.Menu'), {
 	'Kolektabilitas',
 	'Customers',
 	'PermohonanKredits',
-	'Rekenings'
+	'Rekenings',
+	'Debiturs',
+	'TagihanRegulers'
 	],
 	
 	onCabangMenuClicked: function(menuTitle, menuId, mainContent) {
@@ -170,6 +178,72 @@ Ext.define(MyIndo.getNameSpace('controller.Menu'), {
 			store.load();
 			mainContent.add({
 				xtype: 'rekeningview',
+				title: menuTitle,
+				id: menuId,
+				closable: true,
+				store: store
+			});
+		}
+		mainContent.setActiveTab(menuId);
+	},
+
+	onAnalisaKreditClicked: function(menuTitle, menuId, mainContent) {
+		if(!mainContent.items.get(menuId)) {
+			var store = Ext.create(MyIndo.getNameSpace('store.PermohonanKredits'));
+			store.proxy.extraParams = {
+				STATUS: 'Open'
+			};
+			store.load();
+			mainContent.add({
+				xtype: 'analisakreditview',
+				title: menuTitle,
+				id: menuId,
+				closable: true,
+				store: store
+			});
+		}
+		mainContent.setActiveTab(menuId);
+	},
+
+	onPencairanKreditClicked: function(menuTitle, menuId, mainContent) {
+		if(!mainContent.items.get(menuId)) {
+			var store = Ext.create(MyIndo.getNameSpace('store.PermohonanKredits'));
+			store.proxy.extraParams = {
+				STATUS: 'Disetujui'
+			};
+			store.load();
+			mainContent.add({
+				xtype: 'pencairankreditview',
+				title: menuTitle,
+				id: menuId,
+				closable: true,
+				store: store
+			});
+		}
+		mainContent.setActiveTab(menuId);
+	},
+
+	onDebiturClicked: function(menuTitle, menuId, mainContent) {
+		if(!mainContent.items.get(menuId)) {
+			var store = Ext.create(MyIndo.getNameSpace('store.Debiturs'));
+			store.load();
+			mainContent.add({
+				xtype: 'debiturview',
+				title: menuTitle,
+				id: menuId,
+				closable: true,
+				store: store
+			});
+		}
+		mainContent.setActiveTab(menuId);
+	},
+
+	onTagihanRegulerClicked: function(menuTitle, menuId, mainContent) {
+		if(!mainContent.items.get(menuId)) {
+			var store = Ext.create(MyIndo.getNameSpace('store.TagihanRegulers'));
+			store.load();
+			mainContent.add({
+				xtype: 'tagihanregulerview',
 				title: menuTitle,
 				id: menuId,
 				closable: true,

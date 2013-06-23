@@ -1,13 +1,9 @@
-Ext.define(MyIndo.getNameSpace('view.Master.PermohonanKredit.PermohonanKreditView'), {
+Ext.define(MyIndo.getNameSpace('view.Kredit.PencairanKredit.View'), {
 	extend: 'Ext.grid.Panel',
-	alias: 'widget.PermohonanKreditView',
+	alias: 'widget.pencairankreditview',
 	border: false,
-	columns: [/*{
-		text: 'Unit Kerja ID',
-		width: 110,
-		align: 'center',
-		dataIndex: 'PAYMENT_POINT_ID'
-	},*/{
+
+	columns: [{
 		text: 'No Permohonan',
 		align: 'center',
 		width: 150,
@@ -41,17 +37,9 @@ Ext.define(MyIndo.getNameSpace('view.Master.PermohonanKredit.PermohonanKreditVie
 	initComponent: function() {
 		Ext.apply(this, {
 			tbar: [{
-				text: 'Tambah Permohonan Kredit',
-				iconCls: 'icon-accept',
-				action: 'add'
-			},{
-				text: 'Update Permohonan Kredit',
-				iconCls: 'icon-pencil',
-				action: 'update'
-			},{
-				text: 'Hapus Permohonan Kredit',
-				iconCls: 'icon-delete',
-				action: 'delete'
+				text: 'Detail Permohonan Kredit',
+				iconCls: 'icon-detail',
+				action: 'detail'
 			}],
 			dockedItems: [{
 				xtype: 'pagingtoolbar',
