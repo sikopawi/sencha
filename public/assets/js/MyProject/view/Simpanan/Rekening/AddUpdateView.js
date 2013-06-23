@@ -35,12 +35,16 @@ Ext.define(MyIndo.getNameSpace('view.Simpanan.Rekening.AddUpdateView'), {
 						fieldLabel: 'No. Reg',
 						id: 'rekening_combo',
 						displayField: 'CUSTOMERS_NO_REG',
-						inputField: 'CUSTOMERS_ID',
+						valueField: 'CUSTOMERS_ID',
 						allowBlank: false,
 						editable: false,
 						store: me.cusstore,
 						pageSize: 25,
 						width: 350
+					},{
+						fieldLabel: 'Nama',
+						name: 'CUSTOMERS_NAME',
+						readOnly: true
 					},{
 						xtype: 'textarea',
 						fieldLabel: 'Alamat Tinggal',
@@ -57,7 +61,7 @@ Ext.define(MyIndo.getNameSpace('view.Simpanan.Rekening.AddUpdateView'), {
 						width: 200
 					},{
 						fieldLabel: 'No. Ref',
-						name: 'REKEING_NO_REF',
+						name: 'REKENING_NO_REF',
 						allowBlank: false
 					},{
 						fieldLabel: 'Unit Kerja',

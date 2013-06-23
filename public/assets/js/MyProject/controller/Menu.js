@@ -26,7 +26,8 @@ Ext.define(MyIndo.getNameSpace('controller.Menu'), {
 	'MarketingOfficers',
 	'Kolektabilitas',
 	'Customers',
-	'PermohonanKredits'
+	'PermohonanKredits',
+	'Rekenings'
 	],
 	
 	onCabangMenuClicked: function(menuTitle, menuId, mainContent) {
@@ -165,14 +166,14 @@ Ext.define(MyIndo.getNameSpace('controller.Menu'), {
 	
 	onRekeningClicked: function(menuTitle, menuId, mainContent) {
 		if(!mainContent.items.get(menuId)) {
-			// var store = Ext.create(MyIndo.getNameSpace('store.Kolektabilitas'));
-			// store.load();
+			var store = Ext.create(MyIndo.getNameSpace('store.Rekenings'));
+			store.load();
 			mainContent.add({
 				xtype: 'rekeningview',
 				title: menuTitle,
 				id: menuId,
 				closable: true,
-				// store: store
+				store: store
 			});
 		}
 		mainContent.setActiveTab(menuId);
