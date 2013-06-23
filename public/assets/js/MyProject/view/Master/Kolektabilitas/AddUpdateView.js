@@ -60,3 +60,13 @@ Ext.define(MyIndo.getNameSpace('view.Master.Kolektabilitas.AddUpdateView'), {
 		this.callParent(arguments);
 	}
 });
+
+/*
+CREATE TABLE REKENING(
+ REKENING_ID INT(19) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+ REKENING_NO VARCHAR(100) NOT NULL,
+ REKENING_NO_REF VARCHAR(100) NOT NULL,
+ REKENING_STATUS VARCHAR(100) NOT NULL DEFAULT '',
+ 
+)ENGINE=InnoDB;
+*/
