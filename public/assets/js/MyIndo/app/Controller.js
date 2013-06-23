@@ -28,5 +28,9 @@ Ext.define('MyIndo.app.Controller', {
 			Ext.Msg.alert('Application Error', '<strong>Error Code: ' + data.error_code + '</strong><br/><strong>Error Message</strong>: ' + data.error_message);
 		}
 		return data.success;
+	},
+
+	getActiveUser: function() {
+		return 'admin';
 	}
 });

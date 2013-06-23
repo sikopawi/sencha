@@ -11,6 +11,8 @@ Ext.define(MyIndo.getNameSpace('controller.Menu'), {
 	MyIndo.getNameSpace('view.Master.MarketingOfficer.MarketingOfficerView'),
 	MyIndo.getNameSpace('view.Master.Kolektabilitas.KolektabilitasView'),
 	MyIndo.getNameSpace('view.Master.PermohonanKredit.PermohonanKreditView'),
+
+	MyIndo.getNameSpace('view.Simpanan.Rekening.View'),
 	MyIndo.getNameSpace('controller.Master.Cabang')
 	],
 
@@ -159,7 +161,20 @@ Ext.define(MyIndo.getNameSpace('controller.Menu'), {
 			});
 		}
 		mainContent.setActiveTab(menuId);
-	}
+	},
 	
-
+	onRekeningClicked: function(menuTitle, menuId, mainContent) {
+		if(!mainContent.items.get(menuId)) {
+			// var store = Ext.create(MyIndo.getNameSpace('store.Kolektabilitas'));
+			// store.load();
+			mainContent.add({
+				xtype: 'rekeningview',
+				title: menuTitle,
+				id: menuId,
+				closable: true,
+				// store: store
+			});
+		}
+		mainContent.setActiveTab(menuId);
+	}
 });
