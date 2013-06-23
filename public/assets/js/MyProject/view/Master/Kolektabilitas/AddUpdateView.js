@@ -21,28 +21,30 @@ Ext.define(MyIndo.getNameSpace('view.Master.Kolektabilitas.AddUpdateView'), {
 					border: false,
 					items: [{
 						xtype: 'textfield',
-						fieldLabel: 'Kode Kolektabilitas',
+						fieldLabel: 'Kode',
 						emptyText: 'kode kolektabilitas..',
 						allowBlank: false,
 						name: 'KOLEKTIBILITAS_CODE'
 					},{
 						xtype: 'textfield',
-						fieldLabel: 'Uraian Kolektabilitas',
+						fieldLabel: 'Uraian',
 						emptyText: 'uraian kolektabilitas..',
 						allowBlank: false,
 						name: 'KOLEKTIBILITAS_URAIAN'
 					},{
-						xtype: 'textfield',
-						fieldLabel: 'Tunggakan Kolektabilitas Minimum',
+						xtype: 'numberfield',
+						fieldLabel: 'Tunggakan Minimum',
 						emptyText: 'Tunggakan Kolektabilitas Minimum..',
 						allowBlank: false,
+						minValue: 0,
 						name: 'KOLEKTIBILITAS_TUNGGAKAN_MIN'
 						
 					},{
-						xtype: 'textfield',
-						fieldLabel: 'Tunggakan Kolektabilits Maximum',
+						xtype: 'numberfield',
+						fieldLabel: 'Tunggakan Maximum',
 						emptyText: 'tunggakan kolektabilitas maximum..',
 						allowBlank: false,
+						minValue: 0,
 						name: 'KOLEKTIBILITAS_TUNGGAKAN_MAX'
 					}]
 				}]

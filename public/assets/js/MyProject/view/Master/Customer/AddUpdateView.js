@@ -18,6 +18,7 @@ Ext.define(MyIndo.getNameSpace('view.Master.Customer.AddUpdateView'), {
 				width: 764,
 				items: [{
 					xtype: 'fieldset',
+					id: 'customer-add-update-form-fieldset',
 					title: 'Informasi Customer',
 					defaults: {
 						width: 340

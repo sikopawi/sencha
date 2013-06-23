@@ -12,12 +12,12 @@ Ext.define(MyIndo.getNameSpace('view.Master.UnitKerja.UnitKerjaView'), {
 		align: 'center',
 		width: 150,
 		dataIndex: 'UNIT_KERJA_NAME'
-	},{
+	},/*{
 		text: 'Unit Kerja Alamat',
 		flex: 1,
 		dataIndex: 'UNIT_KERJA_ADDRESS'
-	},{
-		text: 'Unit Kerja Telephone',
+	},*/{
+		text: 'Unit Kerja Telepon',
 		flex: 1,
 		dataIndex: 'UNIT_KERJA_PHONE'
 	},{
@@ -25,7 +25,7 @@ Ext.define(MyIndo.getNameSpace('view.Master.UnitKerja.UnitKerjaView'), {
 		flex: 1,
 		dataIndex: 'UNIT_KERJA_FAX'
 	},{
-		text: 'Unit Kerja Contac Person',
+		text: 'Unit Kerja Contact Person',
 		flex: 1,
 		dataIndex: 'UNIT_KERJA_CONTACT_PERSON'
 	},{

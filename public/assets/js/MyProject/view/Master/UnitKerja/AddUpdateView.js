@@ -19,22 +19,25 @@ Ext.define(MyIndo.getNameSpace('view.Master.UnitKerja.AddUpdateView'), {
 					width: '100%',
 					id: 'unitkerja-add-update-form-fieldset',
 					border: false,
+					defaults: {
+						width: 300
+					},
 					items: [{
 						xtype: 'textfield',
 						fieldLabel: 'Nama Unit Kerja',
-						emptyText: 'nama unit kerja..',
+						emptyText: 'Nama Unit Kerja..',
 						allowBlank: false,
 						name: 'UNIT_KERJA_NAME'
 					},{
-						xtype: 'textfield',
+						xtype: 'textarea',
 						fieldLabel: 'Alamat Unit Kerja',
-						emptyText: 'alamat unit kerja..',
+						emptyText: 'Alamat Unit Kerja..',
 						allowBlank: false,
 						name: 'UNIT_KERJA_ADDRESS'
 					},{
 						xtype: 'textfield',
-						fieldLabel: 'Telepone Unit Kerja',
-						emptyText: 'telepon unit kerja..',
+						fieldLabel: 'Telepon',
+						emptyText: 'Telepon unit kerja..',
 						allowBlank: false,
 						name: 'UNIT_KERJA_PHONE'
 						
@@ -42,7 +45,7 @@ Ext.define(MyIndo.getNameSpace('view.Master.UnitKerja.AddUpdateView'), {
 						
 						xtype: 'textfield',
 						fieldLabel: 'Fax',
-						emptyText: 'fax	..',
+						emptyText: 'Fax..',
 						allowBlank: false,
 						name: 'UNIT_KERJA_FAX'
 						
@@ -50,7 +53,7 @@ Ext.define(MyIndo.getNameSpace('view.Master.UnitKerja.AddUpdateView'), {
 					},{
 						xtype: 'textfield',
 						fieldLabel: 'Kontak Person',
-						emptyText: 'kontak person..',
+						emptyText: 'Kontak Person..',
 						allowBlank: false,
 						name: 'UNIT_KERJA_CONTACT_PERSON'
 					}]

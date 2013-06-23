@@ -7,11 +7,23 @@ Ext.define(MyIndo.getNameSpace('model.Customer'), {
 		name: 'UNIT_KERJA_ID',
 		type: 'int'
 	},{
+		name: 'UNIT_KERJA_NAME',
+		type: 'string'
+	},{
 		name: 'CABANG_ID',
 		type: 'int'
 	},{
+		name: 'CABANG_NAME',
+		type: 'string'
+	},{
 		name: 'PAYMENT_POINT_ID',
 		type: 'int'
+	},{
+		name: 'PAYMENT_POINT_CODE',
+		type: 'string'
+	},{
+		name: 'PAYMENT_POINT_NAME',
+		type: 'string'
 	},{
 		name: 'CUSTOMERS_NO_REG',
 		type: 'string'
