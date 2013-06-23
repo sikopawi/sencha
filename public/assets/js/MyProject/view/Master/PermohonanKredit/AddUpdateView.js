@@ -19,6 +19,7 @@ Ext.define(MyIndo.getNameSpace('view.Master.PermohonanKredit.AddUpdateView'), {
 				items: [{
 					xtype: 'fieldset',
 					title: 'Informasi Permohonan Kredit',
+					id: 'permohonankredit-add-update-form-fieldset',
 					defaults: {
 						width: 340
 					},
