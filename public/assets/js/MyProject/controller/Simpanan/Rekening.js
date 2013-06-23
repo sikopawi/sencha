@@ -102,7 +102,6 @@ Ext.define(MyIndo.getNameSpace('controller.Simpanan.Rekening'), {
 			formFieldset.add(new Ext.form.field.Hidden({
 				name: 'REKENING_ID'
 			}));
-			console.log(selected[0].data);
 			form.setValues({
 				REKENING_ID: selected[0].data.REKENING_ID,
 				REKENING_NO: selected[0].data.REKENING_NO,
@@ -135,6 +134,38 @@ Ext.define(MyIndo.getNameSpace('controller.Simpanan.Rekening'), {
 								
 								/* Reset Form : */
 								form.reset();
+
+								/* Reload Store : */
+								store.load(store.currentPage);
+							}
+						},
+						failure: function(data, res) {
+							var json = Ext.decode(res.response.responseText);
+							Ext.Msg.alert('Application Error', '<strong>Error Code</strong>: ' + json.error_code + '<br/><strong>Message</strong>: ' + json.error_message);
+						}
+					})
+				}
+			}));
+		} else {
+			Ext.Msg.alert('Application Error', 'Tolong lengkapi form terlebih dahulu.');
+		}
+	},
+
+	doUpdate: function(record) {
+		var form = Ext.getCmp('rekening-add-update-form').getForm();
+		var mainContent = Ext.getCmp('main-content');
+		var store = mainContent.getActiveTab().getStore();
+		var me = this;
+		if(form.isValid()) {
+			if(Ext.Msg.confirm('Konfirmasi Update Rekening', 'Anda yakin ingin menyimpan data ini ?', function(btn) {
+				if(btn == 'yes') {
+					form.submit({
+						url: MyIndo.siteUrl('rekening/request/update'),
+						success: function(data, res) {
+							var json = Ext.decode(res.response.responseText);
+							if(me.isLogin(json)) {
+
+								Ext.Msg.alert('Message', 'Rekening berhasil diupdate.');
 
 								/* Reload Store : */
 								store.load(store.currentPage);
