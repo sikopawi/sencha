@@ -61,14 +61,17 @@ Ext.define(MyIndo.getNameSpace('controller.Simpanan.Rekening'), {
 
 	onComboChange: function(record) {
 		var values = record.valueModels[0].data;
-		var form = Ext.getCmp('rekening-add-update-form').getForm();
-		form.setValues({
-			CUSTOMERS_ADDRESS: values.CUSTOMERS_ADDRESS,
-			CUSTOMERS_PHONE: values.CUSTOMERS_PHONE,
-			CUSTOMERS_BIRTHDATE: values.CUSTOMERS_BIRTHDATE,
-			UNIT_KERJA_NAME: values.UNIT_KERJA_NAME,
-			CABANG_NAME: values.CABANG_NAME
-		});
+		if(record.valueModels.length > 0) {
+			var form = Ext.getCmp('rekening-add-update-form').getForm();
+			form.setValues({
+				CUSTOMERS_NAME: values.CUSTOMERS_NAME,
+				CUSTOMERS_ADDRESS: values.CUSTOMERS_ADDRESS,
+				CUSTOMERS_PHONE: values.CUSTOMERS_PHONE,
+				CUSTOMERS_BIRTHDATE: values.CUSTOMERS_BIRTHDATE,
+				UNIT_KERJA_NAME: values.UNIT_KERJA_NAME,
+				CABANG_NAME: values.CABANG_NAME
+			});
+		}
 	},
 
 	add: function() {
