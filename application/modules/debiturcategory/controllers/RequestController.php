@@ -41,17 +41,17 @@ class Debiturcategory_RequestController extends MyIndo_Controller_Action
 		try {
 			if(isset($this->_posts['DEBITUR_CATEGORY_ID']) && isset($this->_posts['DEBITUR_CATEGORY_ID'])) {
 				$model = new debiturcategory_Model_DebiturCategory();
-				if($model->isExist('DEBITUR_CATEGORY_ID', $this->_posts['DEBITUR_CATEGORY_ID'])) {
-					if(strlen($this->_posts['DEBITUR_CATEGORY_NAME']) > 0) {
-						if($model->isExist('DEBITUR_CATEGORY_NAME', $this->_posts['DEBITUR_CATEGORY_NAME'])) {
-							$this->error(101, 'Debitur Category sudah terdaftar, silahkan gunakan nama lain.');
-						} else {
+				$q = $model->select()->where('DEBITUR_CATEGORY_ID = ?', $this->_posts['DEBITUR_CATEGORY_ID']);
+				$res = $q->query()->fetch();
+				if($q->query()->rowCount() > 0) {
+					if($this->_posts['DEBITUR_CATEGORY_NAME'] != $res['DEBITUR_CATEGORY_NAME']) {
+						if(!$model->isExist('DEBITUR_CATEGORY_NAME', $this->_posts['DEBITUR_CATEGORY_NAME'])) {
 							$model->update(array(
-								'DEBITUR_CATEGORY_NAME' => $this->_posts['DEBITUR_CATEGORY_NAME']
-								), $model->getAdapter()->quoteInto('DEBITUR_CATEGORY_ID = ?', $this->_posts['DEBITUR_CATEGORY_ID']));
+							'DEBITUR_CATEGORY_NAME' => $this->_posts['DEBITUR_CATEGORY_NAME']
+							), $model->getAdapter()->quoteInto('DEBITUR_CATEGORY_ID = ?', $this->_posts['DEBITUR_CATEGORY_ID']));
+						} else {
+							$this->error(101, 'Update data gagal, Debitur Category sudah terdaftar');
 						}
-					} else {
-						$this->error(901);
 					}
 				} else {
 					$this->error(102, 'Update data Debitur Category gagal, data tidak terdaftar.');

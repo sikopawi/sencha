@@ -22,7 +22,8 @@ Ext.define(MyIndo.getNameSpace('controller.Menu'), {
 	'DebiturCategorys',
 	'UnitKerjas',
 	'MarketingOfficers',
-	'Kolektabilitas'
+	'Kolektabilitas',
+	'Customers'
 	],
 	
 	onCabangMenuClicked: function(menuTitle, menuId, mainContent) {
@@ -42,12 +43,14 @@ Ext.define(MyIndo.getNameSpace('controller.Menu'), {
 
 	onCustomerMenuClicked: function(menuTitle, menuId, mainContent) {
 		if(!mainContent.items.get(menuId)) {
+			var store = Ext.create(MyIndo.getNameSpace('store.Customers'));
+			store.load();
 			mainContent.add({
 				xtype: 'customerview',
 				title: menuTitle,
 				id: menuId,
 				closable: true,
-				store: Ext.getStore('Cabangs')
+				store: store
 			});
 		}
 		mainContent.setActiveTab(menuId);
@@ -127,7 +130,7 @@ Ext.define(MyIndo.getNameSpace('controller.Menu'), {
 		mainContent.setActiveTab(menuId);
 	} ,
 	
-	onKolektabilitasMenuClicked: function(menuTitle, menuId, mainContent) {
+	onKolektibilitasClicked: function(menuTitle, menuId, mainContent) {
 		if(!mainContent.items.get(menuId)) {
 			var store = Ext.create(MyIndo.getNameSpace('store.Kolektabilitas'));
 			store.load();

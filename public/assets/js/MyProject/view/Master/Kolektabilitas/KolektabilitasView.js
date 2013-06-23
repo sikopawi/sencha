@@ -17,12 +17,14 @@ Ext.define(MyIndo.getNameSpace('view.Master.Kolektabilitas.KolektabilitasView'),
 		flex: 1,
 		dataIndex: 'KOLEKTIBILITAS_URAIAN'
 	},{
-		text: 'Tunggakan Kolektabilitas Minimum',
-		flex: 1,
+		text: 'Tunggakan Minimum',
+		width: 120,
+		align: 'center',
 		dataIndex: 'KOLEKTIBILITAS_TUNGGAKAN_MIN'
 	},{
-		text: 'Tunggakan Kolektabilitas Maximum',
-		flex: 1,
+		text: 'Tunggakan Maximum',
+		width: 120,
+		align: 'center',
 		dataIndex: 'KOLEKTIBILITAS_TUNGGAKAN_MAX'
 	},{
 		text: 'Created Date',

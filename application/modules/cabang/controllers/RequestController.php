@@ -41,11 +41,19 @@ class Cabang_RequestController extends MyIndo_Controller_Action
 		try {
 			if(isset($this->_posts['CABANG_ID']) && isset($this->_posts['CABANG_NAME'])) {
 				$model = new cabang_Model_Cabang();
-				if($model->isExist('CABANG_ID', $this->_posts['CABANG_ID'])) {
+				$q = $model->select()->where('CABANG_ID = ?', $this->_posts['CABANG_ID']);
+				$res = $q->query()->fetch();
+				if($q->query()->rowCount() > 0) {
 					if(strlen($this->_posts['CABANG_NAME']) > 0) {
-						$model->update(array(
-							'CABANG_NAME' => $this->_posts['CABANG_NAME']
-							), $model->getAdapter()->quoteInto('CABANG_ID = ?', $this->_posts['CABANG_ID']));
+						if($this->_posts['CABANG_NAME'] != $res['CABANG_NAME']) {
+							if(!$model->isExist('CABANG_NAME', $this->_posts['CABANG_NAME'])) {
+								$model->update(array(
+								'CABANG_NAME' => $this->_posts['CABANG_NAME']
+								), $model->getAdapter()->quoteInto('CABANG_ID = ?', $this->_posts['CABANG_ID']));
+							} else {
+								$this->error(101, 'Update data cabang gagal, nama cabang sudah terdaftar');
+							}
+						}
 					} else {
 						$this->error(901);
 					}

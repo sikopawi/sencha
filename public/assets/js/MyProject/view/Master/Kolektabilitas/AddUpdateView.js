@@ -34,7 +34,7 @@ Ext.define(MyIndo.getNameSpace('view.Master.Kolektabilitas.AddUpdateView'), {
 					},{
 						xtype: 'textfield',
 						fieldLabel: 'Tunggakan Kolektabilitas Minimum',
-						emptyText: 'telepon unit kerja..',
+						emptyText: 'Tunggakan Kolektabilitas Minimum..',
 						allowBlank: false,
 						name: 'KOLEKTIBILITAS_TUNGGAKAN_MIN'
 						

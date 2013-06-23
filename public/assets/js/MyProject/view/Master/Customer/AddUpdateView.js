@@ -25,7 +25,7 @@ Ext.define(MyIndo.getNameSpace('view.Master.Customer.AddUpdateView'), {
 					defaultType: 'textfield',
 					items: [{
 						fieldLabel: 'No Reg.',
-						name: 'NO_REG',
+						name: 'CUSTOMERS_NO_REG',
 						allowBlank: false,
 						width: 200
 					},{
@@ -75,7 +75,8 @@ Ext.define(MyIndo.getNameSpace('view.Master.Customer.AddUpdateView'), {
 						valueField: 'UNIT_KERJA_ID',
 						allowBlank: false,
 						store: me.ukstore,
-						pageSize: 25
+						pageSize: 25,
+						editable: false
 					},{
 						xtype: 'combobox',
 						fieldLabel: 'Cabang',
@@ -84,7 +85,8 @@ Ext.define(MyIndo.getNameSpace('view.Master.Customer.AddUpdateView'), {
 						store: me.cbstore,
 						displayField: 'CABANG_NAME',
 						valueField: 'CABANG_ID',
-						pageSize: 25
+						pageSize: 25,
+						editable: false
 					}]
 				},{
 					xtype: 'fieldset',

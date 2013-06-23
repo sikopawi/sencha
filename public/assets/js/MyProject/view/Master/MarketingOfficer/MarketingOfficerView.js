@@ -9,8 +9,7 @@ Ext.define(MyIndo.getNameSpace('view.Master.MarketingOfficer.MarketingOfficerVie
 		dataIndex: 'PAYMENT_POINT_ID'
 	},*/{
 		text: 'Nama Marketing Officer',
-		align: 'center',
-		width: 150,
+		flex: 1,
 		dataIndex: 'MARKETING_OFFICER_NAME'
 	},{
 		text: 'Created Date',

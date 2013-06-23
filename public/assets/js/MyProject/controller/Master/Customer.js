@@ -45,9 +45,11 @@ Ext.define(MyIndo.getNameSpace('controller.Master.Customer'), {
 
 	add: function() {
 		var pptstore = Ext.create(MyIndo.getNameSpace('store.PaymentPoints'));
+		var ukstore = Ext.create(MyIndo.getNameSpace('store.UnitKerjas'));
 		var cbstore = Ext.create(MyIndo.getNameSpace('store.Cabangs'));
 		var addWindow = Ext.create(MyIndo.getNameSpace('view.Master.Customer.AddUpdateView'), {
 			pptstore: pptstore,
+			ukstore: ukstore,
 			cbstore: cbstore
 		});
 		addWindow.show();

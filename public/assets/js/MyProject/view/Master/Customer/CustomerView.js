@@ -3,6 +3,11 @@ Ext.define(MyIndo.getNameSpace('view.Master.Customer.CustomerView'), {
 	alias: 'widget.customerview',
 	border: false,
 	columns: [{
+		text: 'No. Reg',
+		width: 150,
+		align: 'center',
+		dataIndex: 'CUSTOMERS_NO_REG'
+	},{
 		text: 'Customer Name',
 		flex: 1,
 		dataIndex: 'CUSTOMERS_NAME'
