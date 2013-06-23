@@ -1,6 +1,6 @@
 Ext.define(MyIndo.getNameSpace('view.Master.PermohonanKredit.AddUpdateView'), {
 	extend: 'Ext.Window',
-	alias: 'widget.permohonankreditaddupdateview',
+	alias: 'widget.permohonankreditaddupdateview', // alias objek untuk dikenal controller
 	modal: true,
 	resizable: false,
 	title: 'Tambah Permohonan Kredit',
@@ -31,36 +31,35 @@ Ext.define(MyIndo.getNameSpace('view.Master.PermohonanKredit.AddUpdateView'), {
 					},{
 						xtype: 'combobox',
 						fieldLabel: 'Nama Lengkap',
-						name: 'PAYMENT_POINT_ID',
+						name: 'CUSTOMERS_ID',
 						allowBlank: false,
-						displayField: 'PAYMENT_POINT_CODE',
-						valueField: 'PAYMENT_POINT_ID',
+						displayField: 'CUSTOMERS_NAME',
+						valueField: 'CUSTOMERS_ID',
 						pageSize: 25,
 						editable: false,
 						store: me.customerstore
 					},{
-						xtype: 'datefield',
 						fieldLabel: 'Tanggal Lahir',
-						name: 'permohonankreditS_ADDRESS',
-						format: 'Y-m-d',
-						allowBlank: false
+						name: 'CUSTOMERS_BIRTHDATE',
+						allowBlank: false,
+						width: 200
 					},{
 						xtype: 'textarea',
 						fieldLabel: 'Alamat Tinggal',
-						name: 'permohonankreditS_ADDRESS',
+						name: 'CUSTOMERS_ADDRESS',
 						height: 100,
 						allowBlank: false
 					},{
 						fieldLabel: 'No. KTP',
-						name: 'permohonankreditS_NO_KTP',
+						name: 'CUSTOMERS_NO_KTP',
 						allowBlank: false,
 					},{
 						fieldLabel: 'No. Telp',
-						name: 'permohonankreditS_PHONE',
+						name: 'CUSTOMERS_PHONE',
 						allowBlank: false
 					},{
 						fieldLabel: 'NOPEG/NOPEN',
-						name: 'permohonankreditS_NOPEN',
+						name: 'CUSTOMERS_NOPEN',
 						allowBlank: false
 					},{
 						fieldLabel: 'No Buku',
@@ -71,19 +70,19 @@ Ext.define(MyIndo.getNameSpace('view.Master.PermohonanKredit.AddUpdateView'), {
 						fieldLabel: 'Kategori Debitur',
 						name: 'DEBITUR_CATEGORY_ID',
 						allowBlank: false,
-						displayField: 'PAYMENT_POINT_CODE',
-						valueField: 'PAYMENT_POINT_ID',
+						displayField: 'DEBITUR_CATEGORY_NAME',
+						valueField: 'DEBITUR_CATEGORY_ID',
 						pageSize: 25,
 						editable: false,
-						store: me.pptstore
+						store: me.debiturkategorystore
 					},{
 						xtype: 'combobox',
 						fieldLabel: 'Kategori Kredit',
 						name: 'KREDIT_CATEGORY_ID',
-						displayField: 'UNIT_KERJA_NAME',
-						valueField: 'UNIT_KERJA_ID',
+						displayField: 'KREDIT_CATEGORY_NAME',
+						valueField: 'KREDIT_CATEGORY_ID',
 						allowBlank: false,
-						store: me.ukstore,
+						store: me.kreditkategorystore,
 						pageSize: 25,
 						editable: false
 					},{
@@ -111,7 +110,7 @@ Ext.define(MyIndo.getNameSpace('view.Master.PermohonanKredit.AddUpdateView'), {
 							valueField: 'PAYMENT_POINT_ID',
 							pageSize: 25,
 							editable: false,
-							store: me.pptstore
+							store: me.paymentpointstore
 						},{
 							xtype: 'combobox',
 							fieldLabel: 'Ukp',
@@ -119,28 +118,28 @@ Ext.define(MyIndo.getNameSpace('view.Master.PermohonanKredit.AddUpdateView'), {
 							displayField: 'UNIT_KERJA_NAME',
 							valueField: 'UNIT_KERJA_ID',
 							allowBlank: false,
-							store: me.ukstore,
+							store: me.unitkerjastore,
 							pageSize: 25,
 							editable: false
 						},{
 							xtype: 'combobox',
 							fieldLabel: 'Cabang',
-							name: 'UNIT_KERJA_ID',
-							displayField: 'UNIT_KERJA_NAME',
+							name: 'CABANG_ID',
+							displayField: 'CABANG_NAME',
 							valueField: 'CABANG_ID',
 							allowBlank: false,
-							store: me.ukstore,
+							store: me.cabangstore,
 							pageSize: 25,
 							editable: false
 						},{
 							xtype: 'combobox',
 							fieldLabel: 'Status Permohonan',
-							name: 'UNIT_KERJA_ID',
-							displayField: 'UNIT_KERJA_NAME',
-							valueField: 'CABANG_ID',
+							name: 'PERMOHONAN_KREDIT_STATUS',
+							displayField: 'statusPermohonan',
+							valueField: 'statusPermohonan',
 							allowBlank: false,
-							store: me.ukstore,
-							pageSize: 25,
+							fields:['statusPermohonan'],
+							store: ['Baru','Lama'],
 							editable: false
 						}]
 					},{
@@ -152,35 +151,48 @@ Ext.define(MyIndo.getNameSpace('view.Master.PermohonanKredit.AddUpdateView'), {
 						defaultType: 'textfield',
 						items: [{
 							fieldLabel: 'Flapond',
-							name: 'PERMOHONAN_KREDIT_PLAFOND	'
+							name: 'PERMOHONAN_KREDIT_PLAFOND',
+							allowBlank: false
 						},{
 							fieldLabel: 'Jwaktu',
-							name: 'PERMOHONAN_KREDIT_JWAKTU'
+							name: 'PERMOHONAN_KREDIT_JWAKTU',
+							allowBlank: false
 						},{
 							fieldLabel: 'Sifat Bunga',
-							name: 'PERMOHONAN_KREDIT_SIFAT_BUNGA'
+							name: 'PERMOHONAN_KREDIT_SIFAT_BUNGA',
+							allowBlank: false
 						},{
 							fieldLabel: 'Suku Bunga',
-							name: 'PERMOHONAN_KREDIT_SUKU_BUNGA'
+							name: 'PERMOHONAN_KREDIT_SUKU_BUNGA',
+							allowBlank: false
 						},{
 							fieldLabel: 'Pokok',
-							name: 'PERMOHONAN_KREDIT_POKOK'
+							name: 'PERMOHONAN_KREDIT_POKOK',
+							allowBlank: false
 						},{
 							fieldLabel: 'Bunga',
-							name: 'PERMOHONAN_KREDIT_BUNGA'
+							name: 'PERMOHONAN_KREDIT_BUNGA',
+							allowBlank: false
 						},{
 							fieldLabel: 'Angsuran',
-							name: 'PERMOHONAN_KREDIT_ANGSURAN'
+							name: 'PERMOHONAN_KREDIT_ANGSURAN',
+							allowBlank: false
+						},{
+							xtype: 'textarea',
+							fieldLabel: 'Catatan',
+							name: 'PERMOHONAN_KREDIT_CATATAN',
+							height: 100,
+							allowBlank: false
 						}]
 					}]
 				}]
 			}],
 			buttons: [{
 				text: 'Simpan',
-				action: 'add-save'
+				action: 'add-PermohonanKredit-save'
 			},{
 				text: 'Batal',
-				action: 'add-cancel'
+				action: 'add-PermohonanKredit-cancel'
 			}]
 		});
 		this.callParent(arguments);

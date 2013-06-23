@@ -1,8 +1,12 @@
 Ext.define(MyIndo.getNameSpace('model.PermohonanKredit'), {
 	extend: 'Ext.data.Model',
+	
 	fields: [{
 		name: 'PERMOHONAN_KREDIT_ID',
 		type: 'int'
+	},{
+		name: 'PERMOHONAN_KREDIT_NO',
+		type: 'string'
 	},{
 		name: 'CUSTOMERS_ID',
 		type: 'int'

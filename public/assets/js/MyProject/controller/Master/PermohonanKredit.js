@@ -10,16 +10,20 @@ Ext.define(MyIndo.getNameSpace('controller.Master.PermohonanKredit'), {
 			'PermohonanKreditView button': { // onclick tombol add  
 				click: this.onPermohonanKreditViewButtonClicked
 			},
-			'PermohonanKreditaddwindow button': {
+			'permohonankreditaddupdateview button': {  // // call alias di permohonankreditaddupdateview alias dari on eventv click buttonaddUpdateView.js  
 				click: this.onPermohonanKreditAddButtonClicked
+			},
+			'permohonankreditaddupdateview combobox': { // call alias di addUpdateView.js
+					change: this.onComboCustomerChange
 			}
 		});
 	},
+	
 
 	/* PermohonanKredit View */
 
-	onPermohonanKreditViewButtonClicked: function(record) {
-		var action = record.action;
+	onPermohonanKreditViewButtonClicked: function(record) { 
+		var action = record.action; 
 		switch(action) {
 			case 'add':
 				this.add();
@@ -34,12 +38,41 @@ Ext.define(MyIndo.getNameSpace('controller.Master.PermohonanKredit'), {
 				
 		}
 	},
-
+	
+	onComboCustomerChange: function(record) {  
+		if(record.name=='CUSTOMERS_ID') {
+			if(record.valueModels.length > 0) { 
+				
+				var values = record.valueModels[0].data;
+				var form = Ext.getCmp('permohonankredit-add-update-form').getForm();
+					form.setValues({
+						CUSTOMERS_ADDRESS: values.CUSTOMERS_ADDRESS,
+						CUSTOMERS_PHONE: values.CUSTOMERS_PHONE,
+						CUSTOMERS_BIRTHDATE: values.CUSTOMERS_BIRTHDATE,
+						CUSTOMERS_NO_KTP: values.CUSTOMERS_NO_KTP,
+						CUSTOMERS_NOPEN: values.CUSTOMERS_NOPEN
+					});
+			}
+		}
+	},
+	
 	add: function() { 
 		
 		var customerstore = Ext.create(MyIndo.getNameSpace('store.Customers'));
+		var kreditkategorystore = Ext.create(MyIndo.getNameSpace('store.KreditCategorys')); // load dari store
+		var debiturkategorystore = Ext.create(MyIndo.getNameSpace('store.DebiturCategorys')); // load dari store
+		var unitkerjastore = Ext.create(MyIndo.getNameSpace('store.UnitKerjas')); // load dari store
+		var cabangstore = Ext.create(MyIndo.getNameSpace('store.Cabangs')); // load dari store
+		var paymentpointstore = Ext.create(MyIndo.getNameSpace('store.PaymentPoints')); // load dari store
+		
+		
 		var addCbWindow = Ext.create(MyIndo.getNameSpace('view.Master.PermohonanKredit.AddUpdateView'),{
-				customerstore: customerstore,
+				customerstore: customerstore, // load data customers untuk combox customer
+				kreditkategorystore: kreditkategorystore,
+				debiturkategorystore: debiturkategorystore,
+				unitkerjastore: unitkerjastore,
+				cabangstore:cabangstore,
+				paymentpointstore:paymentpointstore
 		});
 		
 		addCbWindow.show();
@@ -90,12 +123,12 @@ Ext.define(MyIndo.getNameSpace('controller.Master.PermohonanKredit'), {
 	/* End of : PermohonanKredit Main */
 
 	/* PermohonanKredit Add Window : */
-
-	onPermohonanKreditAddButtonClicked: function(record) {
+	
+	onPermohonanKreditAddButtonClicked: function(record) { //permohonankreditaddupdateview
 		var action = record.action;
 		switch(action) {
-			case 'add-PermohonanKredit-save':
-				if(record.up().up().title == 'Tambah Unit Kerja') {
+			case 'add-PermohonanKredit-save': 
+				if(record.up().up().title == 'Tambah Permohonan Kredit') {
 					this.savePermohonanKredit(record); 
 				} else {
 					this.updatePermohonanKredit(record);
@@ -112,7 +145,7 @@ Ext.define(MyIndo.getNameSpace('controller.Master.PermohonanKredit'), {
 
 	savePermohonanKredit: function(record) {
 		
-		var form = Ext.getCmp('PermohonanKredit-add-update-form').getForm();
+		var form = Ext.getCmp('permohonankredit-add-update-form').getForm(); // diload dari id item dr AddUpdateView.js
 		var mainContent = Ext.getCmp('main-content');
 		var store = mainContent.getActiveTab().getStore();
 		
@@ -143,7 +176,7 @@ Ext.define(MyIndo.getNameSpace('controller.Master.PermohonanKredit'), {
 				}
 			}));
 		} else {
-			Ext.Msg.alert('Application Error', 'Silahkan input nama unit kerja terlebih dahulu.');
+			Ext.Msg.alert('Application Error', 'Silahkan lengkapi data permohonan kredit terlebih dahulu.');
 		}
 	},
 
