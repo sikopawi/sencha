@@ -10,7 +10,7 @@ Ext.define(MyIndo.getNameSpace('controller.Menu'), {
 	MyIndo.getNameSpace('view.Master.UnitKerja.UnitKerjaView'),
 	MyIndo.getNameSpace('view.Master.MarketingOfficer.MarketingOfficerView'),
 	MyIndo.getNameSpace('view.Master.Kolektabilitas.KolektabilitasView'),
-
+	MyIndo.getNameSpace('view.Master.PermohonanKredit.PermohonanKreditView'),
 	MyIndo.getNameSpace('controller.Master.Cabang')
 	],
 
@@ -23,7 +23,8 @@ Ext.define(MyIndo.getNameSpace('controller.Menu'), {
 	'UnitKerjas',
 	'MarketingOfficers',
 	'Kolektabilitas',
-	'Customers'
+	'Customers',
+	'PermohonanKredits'
 	],
 	
 	onCabangMenuClicked: function(menuTitle, menuId, mainContent) {
@@ -136,6 +137,21 @@ Ext.define(MyIndo.getNameSpace('controller.Menu'), {
 			store.load();
 			mainContent.add({
 				xtype: 'KolektabilitasView',
+				title: menuTitle,
+				id: menuId,
+				closable: true,
+				store: store
+			});
+		}
+		mainContent.setActiveTab(menuId);
+	} ,
+	
+	onPermohonanKreditClicked: function(menuTitle, menuId, mainContent) {
+		if(!mainContent.items.get(menuId)) {
+			var store = Ext.create(MyIndo.getNameSpace('store.PermohonanKredits'));
+			store.load();
+			mainContent.add({
+				xtype: 'PermohonanKreditView',
 				title: menuTitle,
 				id: menuId,
 				closable: true,
