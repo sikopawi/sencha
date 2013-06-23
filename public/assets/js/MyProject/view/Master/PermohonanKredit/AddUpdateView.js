@@ -31,37 +31,42 @@ Ext.define(MyIndo.getNameSpace('view.Master.PermohonanKredit.AddUpdateView'), {
 						width: 200
 					},{
 						xtype: 'combobox',
-						fieldLabel: 'Nama Lengkap',
+						fieldLabel: 'No. Reg',
 						name: 'CUSTOMERS_ID',
 						allowBlank: false,
-						displayField: 'CUSTOMERS_NAME',
+						displayField: 'CUSTOMERS_NO_REG',
 						valueField: 'CUSTOMERS_ID',
 						pageSize: 25,
 						editable: false,
 						store: me.customerstore
 					},{
+						fieldLabel: 'Nama Lengkap',
+						name: 'CUSTOMERS_NAME',
+						allowBlank: false,
+						readOnly: true
+					},{
 						fieldLabel: 'Tanggal Lahir',
 						name: 'CUSTOMERS_BIRTHDATE',
-						allowBlank: false,
-						width: 200
+						width: 200,
+						readOnly: true
 					},{
 						xtype: 'textarea',
 						fieldLabel: 'Alamat Tinggal',
 						name: 'CUSTOMERS_ADDRESS',
 						height: 100,
-						allowBlank: false
+						readOnly: true
 					},{
 						fieldLabel: 'No. KTP',
 						name: 'CUSTOMERS_NO_KTP',
-						allowBlank: false,
+						readOnly: true
 					},{
 						fieldLabel: 'No. Telp',
 						name: 'CUSTOMERS_PHONE',
-						allowBlank: false
+						readOnly: true
 					},{
 						fieldLabel: 'NOPEG/NOPEN',
 						name: 'CUSTOMERS_NOPEN',
-						allowBlank: false
+						readOnly: true
 					},{
 						fieldLabel: 'No Buku',
 						name: 'PERMOHONAN_KREDIT_NO_BUKU',

@@ -60,8 +60,8 @@ Ext.define(MyIndo.getNameSpace('controller.Simpanan.Rekening'), {
 	},
 
 	onComboChange: function(record) {
-		var values = record.valueModels[0].data;
 		if(record.valueModels.length > 0) {
+			var values = record.valueModels[0].data;
 			var form = Ext.getCmp('rekening-add-update-form').getForm();
 			form.setValues({
 				CUSTOMERS_NAME: values.CUSTOMERS_NAME,
@@ -85,6 +85,36 @@ Ext.define(MyIndo.getNameSpace('controller.Simpanan.Rekening'), {
 			ENTRY_BY: this.getActiveUser()
 		});
 		addWindow.show();
+	},
+
+	update: function(record) {
+		var parent = record.up().up();
+		var selected = parent.getSelectionModel().getSelection();
+		if(selected.length > 0) {
+			var cusstore = Ext.create(MyIndo.getNameSpace('store.Customers'));
+			cusstore.load();
+			var updateWindow = Ext.create(MyIndo.getNameSpace('view.Simpanan.Rekening.AddUpdateView'), {
+				title: 'Update Rekening',
+				cusstore: cusstore
+			});
+			var form = updateWindow.items.get('rekening-add-update-form').getForm();
+			var formFieldset = updateWindow.items.get('rekening-add-update-form').items.get('rekening-add-update-form-fieldset-1');
+			formFieldset.add(new Ext.form.field.Hidden({
+				name: 'REKENING_ID'
+			}));
+			console.log(selected[0].data);
+			form.setValues({
+				REKENING_ID: selected[0].data.REKENING_ID,
+				REKENING_NO: selected[0].data.REKENING_NO,
+				CUSTOMERS_ID: selected[0].data.CUSTOMERS_ID,
+				REKENING_NO_REF: selected[0].data.REKENING_NO_REF,
+				REKENING_STATUS: selected[0].data.REKENING_STATUS,
+				ENTRY_BY: selected[0].data.ENTRY_BY
+			});
+			updateWindow.show();
+		} else {
+			Ext.Msg.alert('Application Error', 'Anda tidak memilih Rekening.');
+		}
 	},
 
 	doSave: function(record) {

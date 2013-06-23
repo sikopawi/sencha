@@ -46,6 +46,7 @@ Ext.define(MyIndo.getNameSpace('controller.Master.PermohonanKredit'), {
 				var values = record.valueModels[0].data;
 				var form = Ext.getCmp('permohonankredit-add-update-form').getForm();
 					form.setValues({
+						CUSTOMERS_NAME: values.CUSTOMERS_NAME,
 						CUSTOMERS_ADDRESS: values.CUSTOMERS_ADDRESS,
 						CUSTOMERS_PHONE: values.CUSTOMERS_PHONE,
 						CUSTOMERS_BIRTHDATE: values.CUSTOMERS_BIRTHDATE,
