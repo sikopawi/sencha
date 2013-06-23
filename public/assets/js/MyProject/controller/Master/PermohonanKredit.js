@@ -40,8 +40,8 @@ Ext.define(MyIndo.getNameSpace('controller.Master.PermohonanKredit'), {
 		}
 	},
 	
-	onComboCustomerChange: function(record) {   console.log(record);
-		if(record.name=='CUSTOMERS_ID') { alert('dd');
+	onComboCustomerChange: function(record) {  
+		if(record.name=='CUSTOMERS_ID') {
 			if(record.valueModels.length > 0) { 
 				
 				var values = record.valueModels[0].data;
