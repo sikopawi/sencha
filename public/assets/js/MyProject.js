@@ -17,7 +17,9 @@ Ext.application({
 	'Master.Customer',
 	'Master.UnitKerja',
 	'Master.MarketingOfficer',
-	'Master.Kolektabilitas'
+	'Master.Kolektabilitas',
+
+	'Simpanan.Rekening'
 	],
 
 	autoCreateViewport: true,
