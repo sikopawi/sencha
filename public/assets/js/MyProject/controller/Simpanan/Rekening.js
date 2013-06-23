@@ -116,6 +116,27 @@ Ext.define(MyIndo.getNameSpace('controller.Simpanan.Rekening'), {
 		}
 	},
 
+	delete: function(record) {
+		var parent = record.up().up();
+		var selected = parent.getSelectionModel().getSelection();
+		var store = parent.getStore();
+		var me = this;
+		if(selected.length > 0) {
+			Ext.Msg.confirm('Konfirmasi Hapus Rekening', 'Anda yakin ingin menghapus data ini ?', function(btn) {
+				if(btn == 'yes') {
+					store.remove(store.findRecord('REKENING_ID', selected[0].data.REKENING_ID));
+					store.sync({
+						callback: function() {
+							store.load(store.currentPage);
+						}
+					});
+				}
+			});
+		} else {
+			Ext.Msg.alert('Application Error', 'Anda tidak memilih Rekening.');
+		}
+	},
+
 	doSave: function(record) {
 		var form = Ext.getCmp('rekening-add-update-form').getForm();
 		var mainContent = Ext.getCmp('main-content');
