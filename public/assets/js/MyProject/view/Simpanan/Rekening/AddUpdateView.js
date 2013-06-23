@@ -18,7 +18,7 @@ Ext.define(MyIndo.getNameSpace('view.Simpanan.Rekening.AddUpdateView'), {
 				border: false,
 				items: [{
 					xtype: 'fieldset',
-					id: 'rekeing-add-update-form-fieldset-1',
+					id: 'rekening-add-update-form-fieldset-1',
 					defaultType: 'textfield',
 					border: false,
 					defaults: {
@@ -76,7 +76,7 @@ Ext.define(MyIndo.getNameSpace('view.Simpanan.Rekening.AddUpdateView'), {
 					}]
 				},{
 					xtype: 'fieldset',
-					id: 'rekeing-add-update-form-fieldset-2',
+					id: 'rekening-add-update-form-fieldset-2',
 					border: false,
 					defaultType: 'textfield',
 					defaults: {
