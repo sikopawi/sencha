@@ -13,8 +13,9 @@ Ext.define(MyIndo.getNameSpace('controller.Master.PermohonanKredit'), {
 			'permohonankreditaddupdateview button': {  // // call alias di permohonankreditaddupdateview alias dari on eventv click buttonaddUpdateView.js  
 				click: this.onPermohonanKreditAddButtonClicked
 			},
-			'permohonankreditaddupdateview combobox': { // call alias di addUpdateView.js
+			'permohonankreditaddupdateview combobox': { // call alias di addUpdateView.js 
 					change: this.onComboCustomerChange
+				
 			}
 		});
 	},
@@ -25,7 +26,7 @@ Ext.define(MyIndo.getNameSpace('controller.Master.PermohonanKredit'), {
 	onPermohonanKreditViewButtonClicked: function(record) { 
 		var action = record.action; 
 		switch(action) {
-			case 'add':
+			case 'add': 	
 				this.add();
 				break;
 			case 'update':
@@ -39,8 +40,8 @@ Ext.define(MyIndo.getNameSpace('controller.Master.PermohonanKredit'), {
 		}
 	},
 	
-	onComboCustomerChange: function(record) {  
-		if(record.name=='CUSTOMERS_ID') {
+	onComboCustomerChange: function(record) {   console.log(record);
+		if(record.name=='CUSTOMERS_ID') { alert('dd');
 			if(record.valueModels.length > 0) { 
 				
 				var values = record.valueModels[0].data;
