@@ -13,8 +13,9 @@ Ext.define(MyIndo.getNameSpace('controller.Master.PermohonanKredit'), {
 			'permohonankreditaddupdateview button': {  // // call alias di permohonankreditaddupdateview alias dari on eventv click buttonaddUpdateView.js  
 				click: this.onPermohonanKreditAddButtonClicked
 			},
-			'permohonankreditaddupdateview combobox': { // call alias di addUpdateView.js
+			'permohonankreditaddupdateview combobox': { // call alias di addUpdateView.js 
 					change: this.onComboCustomerChange
+				
 			}
 		});
 	},
@@ -25,7 +26,7 @@ Ext.define(MyIndo.getNameSpace('controller.Master.PermohonanKredit'), {
 	onPermohonanKreditViewButtonClicked: function(record) { 
 		var action = record.action; 
 		switch(action) {
-			case 'add':
+			case 'add': 	
 				this.add();
 				break;
 			case 'update':
@@ -80,28 +81,62 @@ Ext.define(MyIndo.getNameSpace('controller.Master.PermohonanKredit'), {
 	},
 
 	update: function(record) {
+		var customerstore = Ext.create(MyIndo.getNameSpace('store.Customers'));
+		var kreditkategorystore = Ext.create(MyIndo.getNameSpace('store.KreditCategorys')); // load dari store
+		var debiturkategorystore = Ext.create(MyIndo.getNameSpace('store.DebiturCategorys')); // load dari store
+		var unitkerjastore = Ext.create(MyIndo.getNameSpace('store.UnitKerjas')); // load dari store
+		var cabangstore = Ext.create(MyIndo.getNameSpace('store.Cabangs')); // load dari store
+		var paymentpointstore = Ext.create(MyIndo.getNameSpace('store.PaymentPoints')); // load dari store
+		
+		customerstore.load();
+		kreditkategorystore.load();
+		debiturkategorystore.load();
+		unitkerjastore.load();
+		cabangstore.load();
+		paymentpointstore.load();
+		
 		var parent = record.up().up();
 		var selected = parent.getSelectionModel().getSelection();
 		if(selected.length > 0) {
 			var updateCbWindow = Ext.create(MyIndo.getNameSpace('view.Master.PermohonanKredit.AddUpdateView'), {
 				title: 'Update Unit Kerja',
+				customerstore: customerstore, // load data customers untuk combox customer
+				kreditkategorystore: kreditkategorystore,
+				debiturkategorystore: debiturkategorystore,
+				unitkerjastore: unitkerjastore,
+				cabangstore:cabangstore,
+				paymentpointstore:paymentpointstore
 			});
-			var form = updateCbWindow.items.get('PermohonanKredit-add-update-form').getForm();
-			var formFieldset = updateCbWindow.items.get('PermohonanKredit-add-update-form').items.get('PermohonanKredit-add-update-form-fieldset');
+			var form = updateCbWindow.items.get('permohonankredit-add-update-form').getForm();
+			var formFieldset = updateCbWindow.items.get('permohonankredit-add-update-form').items.get('permohonankredit-add-update-form-fieldset');
 			formFieldset.add(new Ext.form.field.Hidden({
-				name: 'UNIT_KERJA_ID'
+				name: 'PERMOHONAN_KREDIT_ID'
 			}));
 			form.setValues({
+				PERMOHONAN_KREDIT_ID: selected[0].data.PERMOHONAN_KREDIT_ID,
+				PERMOHONAN_KREDIT_NO: selected[0].data.PERMOHONAN_KREDIT_NO,
+				CUSTOMERS_ID: selected[0].data.CUSTOMERS_ID,
+				PERMOHONAN_KREDIT_STATUS: selected[0].data.PERMOHONAN_KREDIT_STATUS,
+				PERMOHONAN_KREDIT_PENGHASILAN: selected[0].data.PERMOHONAN_KREDIT_PENGHASILAN,
+				PERMOHONAN_KREDIT_PLAFOND: selected[0].data.PERMOHONAN_KREDIT_PLAFOND,
+				PERMOHONAN_KREDIT_STATUS: selected[0].data.PERMOHONAN_KREDIT_STATUS,
+				PERMOHONAN_KREDIT_JWAKTU: selected[0].data.PERMOHONAN_KREDIT_JWAKTU,
+				PERMOHONAN_KREDIT_SIFAT_BUNGA: selected[0].data.PERMOHONAN_KREDIT_SIFAT_BUNGA,
+				PERMOHONAN_KREDIT_SUKU_BUNGA: selected[0].data.PERMOHONAN_KREDIT_SUKU_BUNGA,
+				PERMOHONAN_KREDIT_POKOK: selected[0].data.PERMOHONAN_KREDIT_POKOK,
+				PERMOHONAN_KREDIT_BUNGA: selected[0].data.PERMOHONAN_KREDIT_BUNGA,
+				PERMOHONAN_KREDIT_ANGSURAN: selected[0].data.PERMOHONAN_KREDIT_ANGSURAN,
+				PERMOHONAN_KREDIT_CATATAN: selected[0].data.PERMOHONAN_KREDIT_CATATAN,
+				KREDIT_CATEGORY_ID: selected[0].data.KREDIT_CATEGORY_ID,
+				DEBITUR_CATEGORY_ID: selected[0].data.DEBITUR_CATEGORY_ID,
+				PAYMENT_POINT_ID: selected[0].data.PAYMENT_POINT_ID,
 				UNIT_KERJA_ID: selected[0].data.UNIT_KERJA_ID,
-				UNIT_KERJA_NAME: selected[0].data.UNIT_KERJA_NAME,
-				UNIT_KERJA_ADDRESS: selected[0].data.UNIT_KERJA_ADDRESS,
-				UNIT_KERJA_PHONE: selected[0].data.UNIT_KERJA_PHONE,
-				UNIT_KERJA_FAX: selected[0].data.UNIT_KERJA_FAX,
-				UNIT_KERJA_CONTACT_PERSON: selected[0].data.UNIT_KERJA_CONTACT_PERSON
+			 	CABANG_ID: selected[0].data.CABANG_ID,
+			 	PERMOHONAN_KREDIT_NO_BUKU: selected[0].data.PERMOHONAN_KREDIT_NO_BUKU,
 			});
 			updateCbWindow.show();
 		} else {
-			Ext.Msg.alert('Application Error', 'Anda tidak memilih unit kerja.');
+			Ext.Msg.alert('Application Error', 'Anda tidak memilih data permohonan kredit.');
 		}
 	},
 
@@ -110,7 +145,7 @@ Ext.define(MyIndo.getNameSpace('controller.Master.PermohonanKredit'), {
 		var selected = parent.getSelectionModel().getSelection();
 		var store = parent.getStore();
 		if(selected.length > 0) {
-			Ext.Msg.confirm('Konfirmasi hapus unit kerja', 'Anda yakin ingin menghapus data ini ?', function(btn) {
+			Ext.Msg.confirm('Konfirmasi hapus permohonan kredit', 'Anda yakin ingin menghapus data ini ?', function(btn) {
 				if(btn == 'yes') {
 					store.remove(store.findRecord('UNIT_KERJA_ID', selected[0].data.UNIT_KERJA_ID));
 					store.sync();
@@ -152,7 +187,7 @@ Ext.define(MyIndo.getNameSpace('controller.Master.PermohonanKredit'), {
 		
 		var me = this;
 		if(form.isValid()) {
-			if(Ext.Msg.confirm('Konfirmasi Tambah Unit Kerja', 'Anda yakin ingin menyimpan data ini ?', function(btn) {
+			if(Ext.Msg.confirm('Konfirmasi Tambah  Permohonan Kredit', 'Anda yakin ingin menyimpan data ini ?', function(btn) {
 				if(btn == 'yes') {
 					form.submit({
 						url: MyIndo.siteUrl('permohonankredit/request/add'),
@@ -160,7 +195,7 @@ Ext.define(MyIndo.getNameSpace('controller.Master.PermohonanKredit'), {
 							var json = Ext.decode(res.response.responseText);
 							if(me.isLogin(json)) {
 
-								Ext.Msg.alert('Message', 'Unit kerja berhasil disimpan.');
+								Ext.Msg.alert('Message', 'Data  permohonan kredit berhasil disimpan.');
 								
 								/* Reset Form : */
 								form.reset();
@@ -182,20 +217,20 @@ Ext.define(MyIndo.getNameSpace('controller.Master.PermohonanKredit'), {
 	},
 
 	updatePermohonanKredit: function(record) {
-		var form = Ext.getCmp('PermohonanKredit-add-update-form').getForm(); 
+		var form = Ext.getCmp('permohonankredit-add-update-form').getForm(); 
 		var mainContent = Ext.getCmp('main-content');
 		var store = mainContent.getActiveTab().getStore();
 		var me = this;
 		if(form.isValid()) {
-			if(Ext.Msg.confirm('Konfirmasi update Unit kerja', 'Anda yakin ingin menyimpan data ini ?', function(btn) {
+			if(Ext.Msg.confirm('Konfirmasi update Permohonan Kredit', 'Anda yakin ingin menyimpan data ini ?', function(btn) {
 				if(btn == 'yes') {
 					form.submit({
-						url: MyIndo.siteUrl('PermohonanKredit/request/update'),
+						url: MyIndo.siteUrl('permohonankredit/request/update'),
 						success: function(data, res) {
 							var json = Ext.decode(res.response.responseText);
 							if(me.isLogin(json)) {
 
-								Ext.Msg.alert('Message', 'Unit kerja berhasil diupdate.');
+								Ext.Msg.alert('Message', 'Data permohonan kredit berhasil diupdate.');
 
 								/* Reload Store : */
 								store.load(store.currentPage);
