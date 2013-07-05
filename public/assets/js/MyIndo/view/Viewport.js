@@ -12,7 +12,11 @@ Ext.define('MyIndo.view.Viewport', {
 			width: 250
 		},{
 			region: 'center',
-			xtype: 'content'
+			xtype: 'content',
+			id: 'main-content'
+		},{
+			region: 'south',
+			html: '<div style="padding: 3px;background-color: #e7e7e7;text-shadow: 0 1px 1px #FFF; color: #000"><strong>Username</strong> : ' + MyIndo.getUsername() + ' --|-- <strong>Name</strong> : ' + MyIndo.getName() + ' --|-- ' + new Date() + '</div>'
 		}]
 	}
 });

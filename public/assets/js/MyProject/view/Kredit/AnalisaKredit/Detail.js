@@ -177,7 +177,7 @@ Ext.define(MyIndo.getNameSpace('view.Kredit.AnalisaKredit.Detail'), {
 				iconCls: 'icon-accept',
 				action: 'analisakredit-accept'
 			},{
-				text: 'Tidak Setujui',
+				text: 'Tolak',
 				iconCls: 'icon-cross',
 				action: 'analisakredit-decline'
 			},{

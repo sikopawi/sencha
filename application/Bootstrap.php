@@ -53,6 +53,6 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     protected function _initPlugin()
     {
     	$front = Zend_Controller_Front::getInstance();
-    	//$front->registerPlugin(new Gilang_Plugin_Acl(), 1);
+    	$front->registerPlugin(new MyIndo_Plugins_Acl(), 1);
     }
 }

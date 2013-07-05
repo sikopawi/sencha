@@ -34,6 +34,9 @@ Ext.define(MyIndo.getNameSpace('model.Debitur'), {
 		name: 'PAYMENT_POINT_NAME',
 		type: 'string'
 	},{
+		name: 'PAYMENT_POINT_CODE',
+		type: 'string'
+	},{
 		name: 'CUSTOMERS_NO_REG',
 		type: 'string'
 	},{
@@ -116,9 +119,21 @@ Ext.define(MyIndo.getNameSpace('model.Debitur'), {
 		type: 'int'
 	},{
 		name: 'PERMOHONAN_KREDIT_CATATAN',
-		type: 'text'
+		type: 'string'
 	},{
 		name: 'STATUS',
-		type: 'text'
+		type: 'string'
+	},{
+		name: 'KREDIT_CATEGORY_ID',
+		type: 'int'
+	},{
+		name: 'KREDIT_CATEGORY_NAME',
+		type: 'string'
+	},{
+		name: 'DEBITUR_CATEGORY_ID',
+		type: 'int'
+	},{
+		name: 'DEBITUR_CATEGORY_NAME',
+		type: 'string'
 	}]
 });

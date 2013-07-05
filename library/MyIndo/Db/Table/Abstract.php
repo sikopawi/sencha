@@ -58,4 +58,33 @@ class MyIndo_Db_Table_Abstract extends Zend_Db_Table_Abstract
 			return 0;
 		}
 	}
+
+	public function getLastId($pk)
+	{
+		try {
+
+			$data = $this->getList(1,0, $this->_primary .' DESC');
+			if(count($data) > 0) {
+				return $data[0][$pk];
+			} else {
+				return 0;
+			}
+
+		} catch(Exception $e) {
+			return 0;
+		}
+	}
+
+	public function getDetail($where = array()) {
+		try {
+			$q = $this->select();
+			foreach($where as $k=>$d) {
+				$q->where($d);
+			}
+			$res = $q->query()->fetch();
+			return $res;
+		} catch(Exception $e) {
+			return array();
+		}
+	}
 }

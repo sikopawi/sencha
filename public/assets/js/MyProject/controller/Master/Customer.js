@@ -98,7 +98,7 @@ Ext.define(MyIndo.getNameSpace('controller.Master.Customer'), {
 				UNIT_KERJA_ID: selected[0].data.UNIT_KERJA_ID,
 				CABANG_ID: selected[0].data.CABANG_ID,
 				PAYMENT_POINT_ID: selected[0].data.PAYMENT_POINT_ID,
-				CUSTOMERS_NO_REG: selected[0].data.CUSTOMERS_NO_REG,
+				//CUSTOMERS_NO_REG: selected[0].data.CUSTOMERS_NO_REG,
 				CUSTOMERS_NAME: selected[0].data.CUSTOMERS_NAME,
 				CUSTOMERS_ADDRESS: selected[0].data.CUSTOMERS_ADDRESS,
 				CUSTOMERS_NO_KTP: selected[0].data.CUSTOMERS_NO_KTP,
@@ -156,9 +156,11 @@ Ext.define(MyIndo.getNameSpace('controller.Master.Customer'), {
 		var mainContent = Ext.getCmp('main-content');
 		var store = mainContent.getActiveTab().getStore();
 		var me = this;
+
 		if(form.isValid()) {
 			if(Ext.Msg.confirm('Konfirmasi Tambah Customer', 'Anda yakin ingin menyimpan data ini ?', function(btn) {
 				if(btn == 'yes') {
+					var vals = form.getValues();
 					form.submit({
 						url: MyIndo.siteUrl('customer/request/add'),
 						success: function(data, res) {
@@ -172,6 +174,13 @@ Ext.define(MyIndo.getNameSpace('controller.Master.Customer'), {
 
 								/* Reload Store : */
 								store.load(store.currentPage);
+								noReg = parentInt(vals.CUSTOMERS_NO_REG);
+								var t = '';
+								for(var i=0;i<(10-noReg.length);i++) {
+									t += '0';
+								}
+								MyIndo.data.customer.lastNoReg = t + noReg;
+								console.log(MyIndo.data.customer.lastNoReg);
 							}
 						},
 						failure: function(data, res) {

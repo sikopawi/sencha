@@ -24,12 +24,12 @@ Ext.define(MyIndo.getNameSpace('view.Master.PermohonanKredit.AddUpdateView'), {
 						width: 340
 					},
 					defaultType: 'textfield',
-					items: [{
+					items: [/*{
 						fieldLabel: 'No PK',
 						name: 'PERMOHONAN_KREDIT_NO',
 						allowBlank: false,
 						width: 200
-					},{
+					},*/{
 						xtype: 'combobox',
 						fieldLabel: 'No. Reg',
 						name: 'CUSTOMERS_ID',
@@ -92,9 +92,13 @@ Ext.define(MyIndo.getNameSpace('view.Master.PermohonanKredit.AddUpdateView'), {
 						pageSize: 25,
 						editable: false
 					},{
+						xtype: 'numberfield',
 						fieldLabel: 'Penghasilan',
 						name: 'PERMOHONAN_KREDIT_PENGHASILAN',
-						allowBlank: false
+						allowBlank: false,
+						id: 'pk-penghasilan',
+						value: 0,
+						minValue: 0
 					}]
 				},{
 					xtype: 'fieldset',
@@ -156,39 +160,65 @@ Ext.define(MyIndo.getNameSpace('view.Master.PermohonanKredit.AddUpdateView'), {
 						},
 						defaultType: 'textfield',
 						items: [{
-							fieldLabel: 'Flapond',
+							xtype: 'numberfield',
+							fieldLabel: 'Plafond',
 							name: 'PERMOHONAN_KREDIT_PLAFOND',
-							allowBlank: false
+							allowBlank: false,
+							id: 'pk-plafond',
+							value: 0,
+							minValue: 0
 						},{
+							xtype: 'numberfield',
 							fieldLabel: 'Jwaktu',
 							name: 'PERMOHONAN_KREDIT_JWAKTU',
-							allowBlank: false
+							allowBlank: false,
+							id: 'pk-jwaktu',
+							value: 0,
+							minValue: 0
 						},{
 							fieldLabel: 'Sifat Bunga',
 							name: 'PERMOHONAN_KREDIT_SIFAT_BUNGA',
 							allowBlank: false
 						},{
+							xtype: 'numberfield',
 							fieldLabel: 'Suku Bunga',
 							name: 'PERMOHONAN_KREDIT_SUKU_BUNGA',
-							allowBlank: false
+							allowBlank: false,
+							id: 'pk-suku-bunga',
+							value: 0,
+							minValue: 0
 						},{
+							xtype: 'numberfield',
 							fieldLabel: 'Pokok',
 							name: 'PERMOHONAN_KREDIT_POKOK',
-							allowBlank: false
+							allowBlank: false,
+							id: 'pk-pokok',
+							value: 0,
+							minValue: 0
 						},{
+							xtype: 'numberfield',
 							fieldLabel: 'Bunga',
 							name: 'PERMOHONAN_KREDIT_BUNGA',
-							allowBlank: false
+							allowBlank: false,
+							id: 'pk-bunga',
+							value: 0,
+							minValue: 0
 						},{
+							xtype: 'numberfield',
 							fieldLabel: 'Angsuran',
 							name: 'PERMOHONAN_KREDIT_ANGSURAN',
-							allowBlank: false
+							allowBlank: false,
+							readOnly: true,
+							id: 'pk-angsuran',
+							value: 0,
+							minValue: 0
 						},{
 							xtype: 'textarea',
 							fieldLabel: 'Catatan',
 							name: 'PERMOHONAN_KREDIT_CATATAN',
 							height: 100,
-							allowBlank: false
+							allowBlank: false,
+							value: '-'
 						}]
 					}]
 				}]

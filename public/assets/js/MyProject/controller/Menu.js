@@ -16,7 +16,7 @@ Ext.define(MyIndo.getNameSpace('controller.Menu'), {
 	MyIndo.getNameSpace('view.Kredit.PencairanKredit.View'),
 
 	MyIndo.getNameSpace('view.Administrasi.Debitur.View'),
-	MyIndo.getNameSpace('view.Administrasi.TagihanReguler.View'),
+	MyIndo.getNameSpace('view.Administrasi.Tagihan.View'),
 
 	MyIndo.getNameSpace('view.Simpanan.Rekening.View'),
 	MyIndo.getNameSpace('controller.Master.Cabang')
@@ -35,7 +35,8 @@ Ext.define(MyIndo.getNameSpace('controller.Menu'), {
 	'PermohonanKredits',
 	'Rekenings',
 	'Debiturs',
-	'TagihanRegulers'
+	'Payments',
+	'Cards'
 	],
 	
 	onCabangMenuClicked: function(menuTitle, menuId, mainContent) {
@@ -238,12 +239,12 @@ Ext.define(MyIndo.getNameSpace('controller.Menu'), {
 		mainContent.setActiveTab(menuId);
 	},
 
-	onTagihanRegulerClicked: function(menuTitle, menuId, mainContent) {
+	onTagihanClicked: function(menuTitle, menuId, mainContent) {
 		if(!mainContent.items.get(menuId)) {
-			var store = Ext.create(MyIndo.getNameSpace('store.TagihanRegulers'));
+			var store = Ext.create(MyIndo.getNameSpace('store.Payments'));
 			store.load();
 			mainContent.add({
-				xtype: 'tagihanregulerview',
+				xtype: 'tagihanview',
 				title: menuTitle,
 				id: menuId,
 				closable: true,

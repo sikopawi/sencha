@@ -14,6 +14,7 @@ Class MyIndo_Controller_Action extends Zend_Controller_Action
 	protected $_start;
 	protected $_order;
 	protected $_totalCount;
+	protected $_model;
 
 	public function preDispatch()
 	{
@@ -33,8 +34,9 @@ Class MyIndo_Controller_Action extends Zend_Controller_Action
 		}
 	}
 
-	public function init()
+	function  __construct(Zend_Controller_Request_Abstract $request, Zend_Controller_Response_Abstract $response, array $invokeArgs = array())
 	{
+		parent::__construct($request, $response, $invokeArgs);
 		// Disable view layout :
 		$this->_helper->layout()->disableLayout();
 
@@ -113,6 +115,14 @@ Class MyIndo_Controller_Action extends Zend_Controller_Action
 
 		// Set default $_totalCount :
 		$this->_totalCount = 0;
+	}
+
+	public function indexAction()
+	{
+		echo Zend_Json::encode(array(
+			'serviceName' => 'MyIndo'
+			));
+		die;
 	}
 
 	public function isPost()

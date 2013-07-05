@@ -2,17 +2,17 @@
 
 class IndexController extends Zend_Controller_Action
 {
+    public function indexAction(){}
 
-    public function init()
+    public function testAction() 
     {
-        /* Initialize action controller here */
+    	$this->_helper->viewRenderer->setNoRender(true);
+    	$this->_helper->layout()->disableLayout();
+
+    	$year = date('Y');
+    	$month = date('m');
+
+    	
     }
-
-    public function indexAction()
-    {
-        // action body
-    }
-
-
 }
 

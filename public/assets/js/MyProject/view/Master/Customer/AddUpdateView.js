@@ -24,12 +24,13 @@ Ext.define(MyIndo.getNameSpace('view.Master.Customer.AddUpdateView'), {
 						width: 340
 					},
 					defaultType: 'textfield',
-					items: [{
+					items: [/*{
 						fieldLabel: 'No Reg.',
 						name: 'CUSTOMERS_NO_REG',
 						allowBlank: false,
-						width: 200
-					},{
+						width: 200,
+						readOnly: true
+					},*/{
 						fieldLabel: 'Nama Lengkap',
 						name: 'CUSTOMERS_NAME',
 						allowBlank: false
@@ -37,7 +38,7 @@ Ext.define(MyIndo.getNameSpace('view.Master.Customer.AddUpdateView'), {
 						xtype: 'textarea',
 						fieldLabel: 'Alamat Tinggal',
 						name: 'CUSTOMERS_ADDRESS',
-						height: 100,
+						height: 127,
 						allowBlank: false
 					},{
 						fieldLabel: 'No. KTP',

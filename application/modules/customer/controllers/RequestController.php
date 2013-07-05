@@ -19,6 +19,13 @@ class Customer_RequestController extends MyIndo_Controller_Action
 	{
 		try {
 			$model = new customer_Model_Customer();
+			$newId = $model->getLastId('CUSTOMERS_ID')+1;
+			$noReg = '';
+			for($i=0;$i<(10-(strlen($newId)));$i++) {
+				$noReg .= '0';
+			}
+			$noReg .= $newId;
+			$this->_posts['CUSTOMERS_NO_REG'] = $noReg;
 			$this->_posts['CREATED_DATE'] = $this->_date;
 			$model->insert($this->_posts);
 		} catch(Exception $e) {

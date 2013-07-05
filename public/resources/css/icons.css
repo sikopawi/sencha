@@ -40,6 +40,38 @@
 	background-image: url(../images/icons/application_view_detail.png) !important;
 }
 
-.icon-card {
+.icon-align-middle {
 	background-image: url(../images/icons/align_middle.png) !important;
+}
+
+.icon-card-money {
+	background-image: url(../images/icons/card_money.png) !important;
+}
+
+.icon-money-dollar {
+	background-image: url(../images/icons/money_dollar.png) !important;
+}
+
+.icon-master-card {
+	background-image: url(../images/icons/master_card.png) !important;
+}
+
+.icon-visa-card {
+	background-image: url(../images/icons/visa.png) !important;
+}
+
+.icon-visa-card2 {
+	background-image: url(../images/icons/visa_2.png) !important;
+}
+
+.icon-visa-electron {
+	background-image: url(../images/icons/visa_electron.png) !important;
+}
+
+.icon-lock-break {
+	background-image: url(../images/icons/lock_break.png) !important;
+}
+
+.icon-lock-open {
+	background-image: url(../images/icons/lock_open.png) !important;
 }

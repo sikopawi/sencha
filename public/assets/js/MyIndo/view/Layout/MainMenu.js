@@ -3,6 +3,7 @@ Ext.define('MyIndo.view.Layout.MainMenu', {
 	alias: 'widget.mainmenu',
 	title: 'Main Menu',
 	padding: '1 0 0 0',
+	autoScroll: true,
 
 	initComponent: function() {
 

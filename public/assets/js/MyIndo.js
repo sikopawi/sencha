@@ -17,6 +17,22 @@ Ext.define('MyIndo', {
 			totalProperty: 'data.totalCount'
 		}
 	},
+	user: {
+		username: '',
+		name: ''
+	},
+	setUsername: function(username) {
+		this.user.username = username;
+	},
+	getUsername: function() {
+		return this.user.username;
+	},
+	setName: function(name) {
+		this.user.name = name;
+	},
+	getName: function() {
+		return this.user.name;
+	},
 	setNameSpace: function(str) {
 		this.config.nameSpace = str;
 	},
