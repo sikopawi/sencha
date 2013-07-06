@@ -2,7 +2,8 @@ Ext.define('MyIndo.controller.Menu', {
 	extend: 'MyIndo.app.Controller',
 
 	requires: [
-	'MyIndo.view.Loading'
+	'MyIndo.view.Loading',
+	//'MyIndo.view.Users',
 	],
 
 	init: function() {
@@ -29,5 +30,20 @@ Ext.define('MyIndo.controller.Menu', {
 				}
 			}
 		}
-	}
+	},
+
+	// onUsersClicked: function(menuTitle, menuId, mainContent) {
+	// 	if(!mainContent.items.get(menuId)) {
+	// 		// var store = Ext.create(MyIndo.getNameSpace('store.Cabangs'));
+	// 		// store.load();
+	// 		mainContent.add({
+	// 			xtype: 'usersview',
+	// 			title: menuTitle,
+	// 			id: menuId,
+	// 			closable: true,
+	// 			//store: store
+	// 		});
+	// 	}
+	// 	mainContent.setActiveTab(menuId);
+	// }
 });

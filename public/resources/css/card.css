@@ -1,0 +1,37 @@
+body {
+	font-family: 'Arial';
+	font-size: 13px;
+}
+.strong {
+	font-weight: 800;
+}
+#content {
+	margin: 0 auto;
+	width: 800px;
+	border: 1px solid #CCC;
+	padding: 4px;
+	font-family: 'Arial';
+	font-size: 13px;
+}
+#detail-left {
+	float: left;
+}
+#detail-right {
+	float: right;
+}
+.table {
+	margin-top: 10px;
+	border: 1px solid #aaa;
+}
+.table tr th {
+	background-color: #BBB;
+	padding: 4px;
+	text-shadow: 0 1px 1px #FFF;
+}
+.table tr td {
+	padding: 4px;
+	font-size: 12px;
+}
+.grey {
+	background-color: #eee;
+}

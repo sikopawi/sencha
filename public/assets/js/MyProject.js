@@ -19,6 +19,7 @@ Ext.application({
 	'Master.MarketingOfficer',
 	'Master.Kolektabilitas',
 	'Master.PermohonanKredit',
+	'Master.Users',
 
 	'Administrasi.Debitur',
 	'Administrasi.Tagihan',

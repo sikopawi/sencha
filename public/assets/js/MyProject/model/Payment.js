@@ -2,7 +2,7 @@ Ext.define(MyIndo.getNameSpace('model.Payment'), {
 	extend: 'Ext.data.Model',
 	fields: [{
 		name: 'PAYMENT_ID',
-		type: 'int'
+		type: 'string'
 	},{
 		// For 'Cards' store only
 		name: 'NO',

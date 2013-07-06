@@ -54,6 +54,9 @@ Ext.define(MyIndo.getNameSpace('controller.Administrasi.Tagihan'), {
 			case 'sisipan-save':
 				this.sisipanSave();
 				break;
+			case 'tagihan-print':
+				this.print();
+				break;
 		}
 	},
 
@@ -132,6 +135,22 @@ Ext.define(MyIndo.getNameSpace('controller.Administrasi.Tagihan'), {
 			cabangStore: cabangStore
 		});
 		windowPelunasan.show();
+	},
+
+	print: function() {
+		var panel = Ext.getCmp('main-content');
+		var parent = panel.getActiveTab();
+		var selected = parent.getSelectionModel().getSelection();
+		if(selected.length > 0) {
+			var data = selected[0].data;
+			Ext.Msg.confirm('Konfirmasi Cetak Kwitansi', 'Anda yakin ingin mencetak kwitansi ?<br/>No. Pembarayan : ' + data.PAYMENT_ID, function(btn) {
+				if(btn == 'yes') {
+					window.open(MyIndo.siteUrl('pdf/print/kwitansi-tagihan?id=' + data.PAYMENT_ID), '_blank');
+				}
+			});
+		} else {
+			Ext.Msg.alert('Application Error', 'Anda tidak memilih tagihan.');
+		}
 	},
 
 	onNoRekChanged: function(obj, record) {
@@ -254,7 +273,7 @@ Ext.define(MyIndo.getNameSpace('controller.Administrasi.Tagihan'), {
 						url: MyIndo.siteUrl('payment/request/create'),
 						success: function(data, res) {
 							var json = Ext.decode(res.response.responseText);
-							Ext.Msg.alert('Message', 'Pembayaran sukses.');
+							
 							if(typeof(Ext.getCmp('tagihan-reguler-window')) !== 'undefined') {
 								Ext.getCmp('tagihan-reguler-window').close();
 							} else{
@@ -263,6 +282,12 @@ Ext.define(MyIndo.getNameSpace('controller.Administrasi.Tagihan'), {
 							var panel = Ext.getCmp('main-content');
 							var store = panel.getActiveTab().getStore();
 							store.load(store.currentPage);
+
+							Ext.Msg.confirm('Cetak Kwitansi', 'Payment Berhasil dibuat.<br/>Apakah anda ingin cetak kwitansi ?', function(btn) {
+								if(btn == 'yes') {
+									window.open(MyIndo.siteUrl('pdf/print/kwitansi-tagihan?id=' + json.data.PAYMENT_ID));
+								}
+							});
 						},
 						failure: function(data, res) {
 							var json = Ext.decode(res.response.responseText);
@@ -286,11 +311,15 @@ Ext.define(MyIndo.getNameSpace('controller.Administrasi.Tagihan'), {
 						url: MyIndo.siteUrl('payment/request/create'),
 						success: function(data, res) {
 							var json = Ext.decode(res.response.responseText);
-							Ext.Msg.alert('Message', 'Pembayaran sukses.');
 							Ext.getCmp('tagihan-sisipan-window').close();
 							var panel = Ext.getCmp('main-content');
 							var store = panel.getActiveTab().getStore();
 							store.load(store.currentPage);
+							Ext.Msg.confirm('Cetak Kwitansi', 'Payment Berhasil dibuat.<br/>Apakah anda ingin cetak kwitansi ?', function(btn) {
+								if(btn == 'yes') {
+									window.open(MyIndo.siteUrl('pdf/print/kwitansi-tagihan?id=' + json.data.PAYMENT_ID));
+								}
+							});
 						},
 						failure: function(data, res) {
 							var json = Ext.decode(res.response.responseText);

@@ -41,11 +41,11 @@ Ext.define(MyIndo.getNameSpace('view.Master.Customer.CustomerView'), {
 				text: 'Detail Customer',
 				iconCls: 'icon-detail',
 				action: 'detail'
-			},{
+			}/*,{
 				text: 'Cari Customer',
 				iconCls: 'icon-search',
 				action: 'search'
-			}],
+			}*/],
 			dockedItems: [{
 				xtype: 'pagingtoolbar',
 				displayInfo: true,

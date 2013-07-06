@@ -10,6 +10,7 @@ Ext.define(MyIndo.getNameSpace('view.Administrasi.Debitur.Card'), {
 	autoScroll: true,
 
 	initComponent: function() {
+		var me = this;
 		Ext.apply(this, {
 			items: [{
 				xtype: 'panel',
@@ -149,7 +150,16 @@ Ext.define(MyIndo.getNameSpace('view.Administrasi.Debitur.Card'), {
 				}]
 			}],
 			buttons: [{
+				text: 'Cetak Kartu',
+				iconCls: 'icon-printer',
+				listeners: {
+					click: function() {
+						window.open(MyIndo.siteUrl('pdf/print/card?no_rekening='+me.data.DEBITUR_NO_REK), '_blank');
+					}
+				}
+			},{
 				text: 'Tutup',
+				iconCls: 'icon-cross',
 				listeners: {
 					click: function() {
 						this.up().up().close();

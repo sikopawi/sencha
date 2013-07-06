@@ -3,6 +3,11 @@ Ext.define(MyIndo.getNameSpace('view.Administrasi.Tagihan.View'), {
 	alias: 'widget.tagihanview',
 	border: false,
 	columns: [{
+		text: 'No. Pembayaran',
+		width: 100,
+		align: 'center',
+		dataIndex: 'PAYMENT_ID'
+	},{
 		text: 'Nama Debitur',
 		width: 200,
 		dataIndex: 'CUSTOMERS_NAME'
@@ -101,6 +106,10 @@ Ext.define(MyIndo.getNameSpace('view.Administrasi.Tagihan.View'), {
 				text: 'Tagihan Rekap',
 				iconCls: 'icon-detail',
 				action: 'tagihan-rekap'
+			},{
+				text: 'Print Kwitansi',
+				iconCls: 'icon-printer',
+				action: 'tagihan-print'
 			}],
 			dockedItems: [{
 				xtype: 'pagingtoolbar',

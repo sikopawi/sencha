@@ -17,7 +17,7 @@ class Payment_RequestController extends MyIndo_Controller_Action
 			if($modelDebitur->isExist('DEBITUR_ID', $this->_posts['DEBITUR_ID'])) {
 				$this->_posts['TANGGAL'] = date('Y-m-d');
 				$this->_posts['CREATED_DATE'] = $this->_date;
-				$this->_model->insert($this->_posts);
+				$paymentId = $this->_model->insert($this->_posts);
 
 				$q = $modelDebitur->select()->where('DEBITUR_ID = ?', $this->_posts['DEBITUR_ID']);
 				$res = $q->query()->fetch();
@@ -46,7 +46,7 @@ class Payment_RequestController extends MyIndo_Controller_Action
 				$modelPkDueDate->update(array(
 					'DUE_DATE' => $modelPkDueDate->getNextDate($res['DUE_DATE'])
 					), $modelPkDueDate->getAdapter()->quoteInto('PERMOHONAN_KREDIT_ID = ?', $pkId));
-
+				$this->_data['PAYMENT_ID'] = $paymentId;
 			} else {
 				$this->error(102, 'Debitur tidak terdaftar.');
 			}
@@ -59,8 +59,19 @@ class Payment_RequestController extends MyIndo_Controller_Action
 	{
 		try {
 			$model = new payment_Model_PaymentView();
+			$data = $model->getList($this->_limit, $this->_start, $this->_order);
+			foreach($data as $k=>$d) {
+				$no = $d['PAYMENT_ID'];
+				$len = strlen($no);
+				$tno = '';
+				for($i=0;$i<(10-$len);$i++){
+					$tno .= '0';
+				}
+				$tno .= $no;
+				$data[$k]['PAYMENT_ID'] = $tno;
+			}
 			$this->_data = array(
-				'items' => $model->getList($this->_limit, $this->_start, $this->_order),
+				'items' => $data,
 				'totalCount' => $model->count()
 				);
 		} catch(Exception $e) {

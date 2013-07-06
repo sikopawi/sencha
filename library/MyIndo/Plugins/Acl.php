@@ -40,10 +40,13 @@ class MyIndo_Plugins_Acl extends Zend_Controller_Plugin_Abstract
 			$view->username = $this->_objAuth->getIdentity();
 			$model = new login_Model_Users();
 			$where = array();
+
 			$where[] = $model->getAdapter()->quoteInto('USERNAME = ?', $view->username);
-			$detail = $model->getDetail();
+			$detail = $model->getDetail($where);
+			
 			$view->fname = $detail['FNAME'];
 			$view->lname = $detail['LNAME'];
+
 		}
 	}
 }

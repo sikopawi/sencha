@@ -3,7 +3,8 @@ Ext.define(MyIndo.getNameSpace('controller.Master.Customer'), {
 
 	requires: [
 	MyIndo.getNameSpace('view.Master.Customer.AddUpdateView'),
-	MyIndo.getNameSpace('view.Master.Customer.Search')
+	MyIndo.getNameSpace('view.Master.Customer.Search'),
+	MyIndo.getNameSpace('view.Master.Customer.Detail')
 	],
 
 	init: function() {
@@ -142,7 +143,18 @@ Ext.define(MyIndo.getNameSpace('controller.Master.Customer'), {
 	},
 
 	detail: function(record) {
-		Ext.Msg.alert('Application Error', 'Maaf, fungsi ini belum tersedia.');
+		var panel = Ext.getCmp('main-content');
+		var parent = panel.getActiveTab();
+		var selected = parent.getSelectionModel().getSelection();
+		if(selected.length > 0) {
+			var wDetail = Ext.create(MyIndo.getNameSpace('view.Master.Customer.Detail'));
+			wDetail.show();
+			var form = Ext.getCmp('customer-detail-form').getForm();
+			var data = selected[0].data;
+			form.setValues(data);
+		} else {
+			Ext.Msg.alert('Application Error', 'Anda tidak memilih Customer.');
+		}
 	},
 
 	search: function(record) {
